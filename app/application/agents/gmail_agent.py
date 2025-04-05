@@ -23,7 +23,7 @@ SCOPES = ["https://mail.google.com/"]
 
 
 class GmailAgent(Agent):
-    def _init_(self):
+    def __init__(self):
         # Initialize credentials using OAuth 2.0
         self.creds = Credentials(
             None,
