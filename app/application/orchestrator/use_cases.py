@@ -91,8 +91,8 @@ class Orchestrator:
                                 "📌 'pdf_agent' → (specializes in PDF processing).\n "
                                 "📌 'gmail' → (specializes in gmail management).\n "
                                 "📌 'outlook' → (specializes in email management).\n "
-                                "📌 'ms_excel_agent' → (specializes in microfoft excel processing).\n "
-                                "📌 'ms_word_agent' → (specializes in microfoft word processing).\n "
+                                "📌 'ms_excel_agent_in_agent' → (specializes in microfoft excel processing).\n "
+                                "📌 'ms_word_agent_in_agent' → (specializes in microfoft word processing).\n "
                                 "\n\n"
                                 "If the user’s message follows up on a past topic, assume continuity and respond accordingly.",
                             },
@@ -130,8 +130,8 @@ class Orchestrator:
             "pdf_agent": PdfAgent,
             "gmail": GmailAgent,
             "outlook": OutlookAgent,
-            "ms_excel_agent": MSExcelAgent,
-            "ms_word_agent": MSWordAgent,
+            "ms_excel_agent_in_agent": MSExcelAgent,
+            "ms_word_agent_in_agent": MSWordAgent,
         }
 
         agent_class = agent_mapping.get(decision)

@@ -7,7 +7,8 @@ import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-SERVICE_ACCOUNT_FILE = r"C:\Algo Orange\algoorangeapi\credentials.json"
+SERVICE_ACCOUNT_FILE = r"C:\Users\manoj\OneDrive\Desktop\Ai2\AlgoOrangeApi\credentials.json"
+
 SCOPES = [
     "https://www.googleapis.com/auth/calendar.readonly",
     "https://www.googleapis.com/auth/calendar.events",
