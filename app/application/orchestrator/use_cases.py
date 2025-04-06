@@ -1,5 +1,6 @@
 import os
 import json
+from typing import Optional
 import groq  # Assuming you are using Groq's API
 import tiktoken
 from dotenv import load_dotenv
@@ -46,8 +47,9 @@ def chunk_text(text: str, token_limit: int = TOKEN_LIMIT):
 
 
 class Orchestrator:
-    def __init__(self, userChatQuery: str):
+    def __init__(self, userChatQuery: str, userContent: Optional[str] = None):
         self.userChatQuery = userChatQuery
+        self.userContent = userContent
         self.chatHistory = memory.load_memory_variables({})["chat_history"]
         self.client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -146,7 +148,7 @@ class Orchestrator:
         agent_responses = []
         for query_chunk in query_chunks:
             for history_chunk in history_chunks or [""]:
-                agent_response = await agent.handle_query(query_chunk, history_chunk)
+                agent_response = await agent.handle_query(query_chunk, history_chunk, self.userContent)
                 agent_responses.append(agent_response)
 
         final_response = " ".join(

@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 from app.domain.interfaces import Agent
 import groq  # Groq's API
 
@@ -43,7 +44,7 @@ class MSExcelAgent(Agent):
             return f"Error formatting data: {e}"
 
     async def handle_query(
-        self, data: str, userChatQuery: str, userChatHistory: str
+        self, data: str, userChatQuery: str, userChatHistory: str 
     ) -> str:
 
         # Example: Process the Excel data

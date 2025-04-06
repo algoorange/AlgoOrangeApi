@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from typing import Optional
 from app.domain.interfaces import Agent
 from app.infrastructure.services.vector.vector_store import retrieve_relevant_text
 from app.domain.projectApis.project_service_mongo_implementation import (
@@ -18,7 +19,7 @@ class ProjectAgent(Agent):
         """Initialize the LLM client"""
         self.client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
 
-    async def handle_query(self, userChatQuery, chatHistory):
+    async def handle_query(self, userChatQuery, chatHistory,userContent: Optional[str] = None):
         """Handles user queries by detecting intent and processing accordingly."""
         intent = self.detect_intent(userChatQuery)
 

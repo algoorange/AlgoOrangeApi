@@ -2,6 +2,7 @@ import base64
 from email.mime.text import MIMEText
 import json
 import re
+from typing import Optional
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -33,7 +34,7 @@ class GmailAgent(Agent):
             token_uri="https://oauth2.googleapis.com/token",
         )
 
-    async def handle_query(self, userChatQuery: str, userChatHistory: str) -> str:
+    async def handle_query(self, userChatQuery: str, userChatHistory: str,userContent: Optional[str] = None) -> str:
         client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
 
         # Query Groq LLM to determine which agent to call

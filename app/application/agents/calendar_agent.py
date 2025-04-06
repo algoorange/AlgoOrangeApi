@@ -1,3 +1,4 @@
+from typing import Optional
 from app.domain.interfaces import Agent
 from app.infrastructure.services.calendar.calendar_service import CalendarService
 import re
@@ -18,7 +19,7 @@ calendar_service: CalendarService
 
 class CalendarAgent(Agent):
 
-    async def handle_query(self, userChatQuery: str, userChatHistory: str) -> str:
+    async def handle_query(self, userChatQuery: str, userChatHistory: str,userContent: Optional[str] = None) -> str:
 
         client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
         # Query Groq LLM to determine which agent to call

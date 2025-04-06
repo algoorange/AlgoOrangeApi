@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 import fitz  # PyMuPDF
 import groq
 from uuid import uuid4
@@ -80,7 +81,7 @@ class PdfAgent(Agent):
     def __init__(self):
         self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-    async def handle_query(self, userChatQuery: str, userChatHistory: str) -> str:
+    async def handle_query(self, userChatQuery: str, userChatHistory: str,userContent: Optional[str] = None) -> str:
         """Handles user queries and provides responses based on the latest uploaded PDF."""
         if latest_file_id is None or latest_file_id not in vector_db:
             return "No PDF found. Please upload a document first."

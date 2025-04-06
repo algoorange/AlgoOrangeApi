@@ -1,3 +1,4 @@
+from typing import Optional
 from dotenv import load_dotenv
 from app.domain.interfaces import Agent
 import groq
@@ -12,7 +13,7 @@ class MedicalAgent(Agent):
     def __init__(self):
         self.client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
 
-    async def handle_query(self, userChatQuery: str, chatHistory: str):
+    async def handle_query(self, userChatQuery: str, chatHistory: str,userContent: Optional[str] = None):
         response = self.client.chat.completions.create(
             model="llama-3.3-70b-versatile",  # Use the best available Groq model
             messages=[

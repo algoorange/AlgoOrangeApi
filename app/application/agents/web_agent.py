@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from typing import Optional
 from bs4 import BeautifulSoup  # For web scraping general URLs
 import groq
 import requests
@@ -9,7 +10,7 @@ from app.domain.interfaces import Agent
 
 class WebAgent(Agent):
 
-    async def handle_query(self, userChatQuery: str, userChatHistory: str) -> str:
+    async def handle_query(self, userChatQuery: str, userChatHistory: str,userContent: Optional[str] = None) -> str:
         client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
         # Query Groq LLM to determine which agent to call
         response = client.chat.completions.create(

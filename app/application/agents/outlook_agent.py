@@ -1,3 +1,4 @@
+from typing import Optional
 import requests
 import os
 import json
@@ -30,7 +31,7 @@ class OutlookAgent(Agent):
         else:
             raise Exception(f"Error retrieving access token: {response.json()}")
 
-    async def handle_query(self, userChatQuery: str, userChatHistory: str) -> str:
+    async def handle_query(self, userChatQuery: str, userChatHistory: str,userContent: Optional[str] = None) -> str:
         """Determines whether to read or reply to emails."""
         query_type = "read"  # Default action for now
         if query_type == "read":
